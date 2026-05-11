@@ -1,24 +1,28 @@
 /**
- * @param {number} days
  *
+ *
+ */const DAILY_RATE = 40;
+
+const SHORT_TERM_THRESHOLD = 3;
+const SHORT_TERM_DISCOUNT = 20;
+
+const LONG_TERM_THRESHOLD = 7;
+const LONG_TERM_DISCOUNT = 50;
+
+/**
+ * @param {number} days
  * @return {number}
  */
 function calculateRentalCost(days) {
-  if (days === 3) {
-    return 100;
+  let total = days * DAILY_RATE;
+
+  if (days >= LONG_TERM_THRESHOLD) {
+    total -= LONG_TERM_DISCOUNT;
+  } else if (days >= SHORT_TERM_THRESHOLD) {
+    total -= SHORT_TERM_DISCOUNT;
   }
 
-  if (days === 2) {
-    return 80;
-  }
-
-  if (days === 6) {
-    return 220;
-  }
-
-  if (days === 7) {
-    return 230;
-  }
+  return total;
 }
 
 module.exports = calculateRentalCost;
